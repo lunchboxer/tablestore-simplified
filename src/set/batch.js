@@ -33,9 +33,7 @@ module.exports.batch = async parameters => {
   // 4. write them to the db
   const keysWritten = await putMany(tableName, inputs)
   // 5. return the list of rows with keys, but only the ones that got written
-  if (keysWritten && keysWritten.length > 0) {
-    return parametersWithKeys.filter(row => keysWritten.includes(row.key))
-  } else {
-    return null
-  }
+  return keysWritten && keysWritten.length > 0
+    ? parametersWithKeys.filter(row => keysWritten.includes(row.key))
+    : undefined
 }

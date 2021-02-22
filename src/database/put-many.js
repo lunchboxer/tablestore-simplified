@@ -14,7 +14,7 @@ module.exports.putMany = async (tableName, inputs) => {
       type: 'PUT',
       condition: new TableStore.Condition(
         TableStore.RowExistenceExpectation.IGNORE,
-        null,
+        undefined,
       ),
       primaryKey: [{ app }, { sort_id }],
       attributeColumns,
@@ -33,7 +33,10 @@ module.exports.putMany = async (tableName, inputs) => {
   }
   const response = await client.batchWriteRow(parameters)
   const writtenKeys = response.tables.map(write => {
-    if (write.isOk) return write.primaryKey[1].value.split('#')[2]
+    if (write.isOk) {
+      return write.primaryKey[1].value.split('#')[2]
+    }
+    return 'error'
   })
   return writtenKeys
 }

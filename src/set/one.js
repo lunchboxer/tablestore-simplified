@@ -13,9 +13,5 @@ module.exports.one = async parameters => {
   // 4. write to the db
   const rowsWritten = await putOne(tableName, input)
   // 5. return the complete row with key
-  if (rowsWritten === 1) {
-    return parametersWithKey
-  } else {
-    return null
-  }
+  return rowsWritten === 1 ? parametersWithKey : undefined
 }

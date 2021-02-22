@@ -12,13 +12,12 @@ module.exports.putOne = async (tableName, input) => {
     tableName,
     condition: new TableStore.Condition(
       TableStore.RowExistenceExpectation.IGNORE,
-      null,
     ),
     primaryKey: [{ app }, { sort_id }],
     attributeColumns,
   }
   const response = await client.putRow(parameters)
   // return the number of rows written to the database
-  const numWritten = response.consumed.capacityUnit.write
-  return numWritten
+  const numberWritten = response.consumed.capacityUnit.write
+  return numberWritten
 }

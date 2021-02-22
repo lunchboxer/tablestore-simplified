@@ -16,8 +16,8 @@ module.exports.formatAttributes = attributes => {
   if (!attributes || typeof attributes !== 'object') {
     throw new TypeError('attributes must be non-null object')
   }
-  const propNum = Object.keys(attributes).length
-  if (!propNum) throw new Error('attributes object is empty')
+  const propertyNumber = Object.keys(attributes).length
+  if (!propertyNumber) throw new Error('attributes object is empty')
   const attributesArray = Object.keys(attributes).map(key => {
     validateKey(key)
     const row = {}
