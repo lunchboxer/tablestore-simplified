@@ -11,8 +11,10 @@ The project is very heavily inspired by [begin-data](https://github.com/smallwin
 - [x] write single row to table
 - [x] write multiple rows
 - [x] read a single row from table
-- [ ] fetch all rows from a "table"
-- [ ] delete a row from table
+- [x] fetch all rows from a "table"
+- [ ] pagination with 'cursor'/'token'
+- [x] delete a row from table
+- [x] delete multiple rows
 - [ ] increment a value for a single row
 - [ ] decrement a value
 - [ ] fetch row count for a table

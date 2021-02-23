@@ -17,7 +17,7 @@ module.exports.batch = async parameters => {
   // 2. Get or make a key if none provided
   const parametersWithKeys = parameters.map(item => getOrMakeKey(item))
   // 3. format the alll the inputs
-  const inputs = parameters.map(item => formatInput(item))
+  const inputs = parametersWithKeys.map(item => formatInput(item))
   // 4. write them to the db
   const keysWritten = await putMany(tableName, inputs)
   // 5. return the list of rows with keys, but only the ones that got written
