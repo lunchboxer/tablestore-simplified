@@ -8,6 +8,6 @@ module.exports.formatInput = parameters => {
   if (!key) key = getOrMakeKey(parameters).key
   const environment = process.env.NODE_ENV || 'staging'
   const app = process.env.APP_NAME || 'sandbox'
-  const sort_id = `${environment}#${table}#${key}`
-  return { app, sort_id, ...attributes }
+  const sortId = `${environment}#${table}#${key}`
+  return { app, sortId, ...attributes }
 }

@@ -1,10 +1,10 @@
 const { one } = require('./one')
 const { batch } = require('./batch')
 
-module.exports.set = async parameters => {
+module.exports.set = parameters => {
   if (!parameters) {
     throw new ReferenceError('Missing parameters')
   }
   const exec = Array.isArray(parameters) ? batch : one
-  return await exec(parameters)
+  return exec(parameters)
 }

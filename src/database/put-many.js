@@ -8,15 +8,14 @@ module.exports.putMany = async (tableName, inputs) => {
   }
   // Make an array of rows from the inputs array
   const rows = inputs.map(input => {
-    const { app, sort_id, ...attributes } = input
+    const { app, sortId, ...attributes } = input
     const attributeColumns = formatAttributes(attributes)
     const row = {
       type: 'PUT',
       condition: new TableStore.Condition(
         TableStore.RowExistenceExpectation.IGNORE,
-        undefined,
       ),
-      primaryKey: [{ app }, { sort_id }],
+      primaryKey: [{ app }, { sortId }],
       attributeColumns,
       returnContent: { returnType: TableStore.ReturnType.Primarykey },
     }
