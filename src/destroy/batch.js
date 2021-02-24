@@ -2,7 +2,7 @@ const { getDataTableName } = require('../utils/get-data-table-name')
 const { formatInput } = require('../utils/format-input')
 const { batchWrite } = require('../database/batch-write')
 
-const MAX_BATCH_SIZE = 30
+const MAX_BATCH_SIZE = 25
 
 module.exports.batch = async parameters => {
   if (parameters.length > MAX_BATCH_SIZE) {

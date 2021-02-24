@@ -60,11 +60,13 @@ const { data } = require('tablestore-simplified')
 
 Call functions on the `data` object, namely `get`, `set`, and `destroy`. In addition, there are convenience methods `count`, `incr`, and `decr`
 
-Whereas you may expect rows are given uids in an attribute label `id`, this library, like `@begin/data` which it imitates, uses the label `key`. These keys can be any string.
+Whereas you may expect rows are given UIDs in an attribute labeled `id`, this library, like `@begin/data` which it imitates, uses the label `key`. These keys can be any string.
 
 These functions return promises so `async/await` is recommended.
 
 TableStore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with TableStore.
+
+Batch operations are limited to 25 items
 
 #### set()
 

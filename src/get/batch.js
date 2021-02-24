@@ -3,7 +3,7 @@ const { formatInput } = require('../utils/format-input')
 const { getMany } = require('../database/get-many')
 const { formatResponseRow } = require('../utils/format-response-row')
 
-const MAX_BATCH_SIZE = 30
+const MAX_BATCH_SIZE = 25
 
 module.exports.batch = async parameters => {
   if (parameters.length > MAX_BATCH_SIZE) {
