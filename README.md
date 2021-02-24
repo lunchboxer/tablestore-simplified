@@ -18,7 +18,10 @@ The project is very heavily inspired by [begin-data](https://github.com/smallwin
 - [x] increment a value for a single row
 - [x] decrement a value
 - [x] fetch row count for a table
-- [ ] allow setting ttl
+
+Row-level ttl is not supported by TableStore, so no ttl features are available with this library.
+
+Passing a cursor in for pagination is not currently working.
 
 ## Setup
 
