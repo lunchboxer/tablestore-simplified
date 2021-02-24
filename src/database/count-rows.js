@@ -1,14 +1,14 @@
 const TableStore = require('tablestore')
 const { client } = require('./tablestore-client')
 
-module.exports.getPage = async (tableName, { limit, cursor, app, prefix }) => {
-  limit = limit || 20
+module.exports.countRows = async (tableName, app, prefix) => {
   const indexName = process.env.EASY_DATA_INDEX_NAME || tableName + '_index'
   const parameters = {
     tableName,
     indexName,
     searchQuery: {
-      limit,
+      limit: 0, // this tells tablestore to only return a count, no data
+      getTotalCount: true,
       query: {
         queryType: TableStore.QueryType.BOOL_QUERY,
         query: {
@@ -32,18 +32,9 @@ module.exports.getPage = async (tableName, { limit, cursor, app, prefix }) => {
       },
     },
     columnToGet: {
-      returnType: TableStore.ColumnReturnType.RETURN_ALL,
+      returnType: TableStore.ColumnReturnType.RETURN_NONE,
     },
   }
-  // Doesn't work
-  if (cursor) {
-    parameters.token = Buffer.from(cursor, 'base64')
-  }
   const response = await client.search(parameters)
-  const rows = [...response.rows]
-  if (response.nextToken && response.nextToken.length > 0) {
-    const nextToken = response.nextToken.toString('base64')
-    rows.cursor = nextToken
-  }
-  return rows
+  return Number.parseInt(response.totalCounts)
 }

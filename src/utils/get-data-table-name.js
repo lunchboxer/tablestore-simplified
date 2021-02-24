@@ -1,6 +1,6 @@
 const { listTables } = require('../database/list-tables')
 
-const tableName = process.env.EASY_DATA_TABLE_NAME || 'easy_data'
+const tableName = process.env.EASY_DATA_TABLE_NAME || 'simplified'
 
 const getDataTableName = async () => {
   const tables = await listTables()

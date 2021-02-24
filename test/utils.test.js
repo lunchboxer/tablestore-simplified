@@ -8,8 +8,8 @@ const { formatResponseRow } = require('../src/utils/format-response-row')
 const Long = TableStore.Long
 const test = require('tape')
 
-test('ensureDataTableExists returns tableName or throws error', async t => {
-  const tableName = process.env.EASY_DATA_TABLE_NAME || 'easy_data'
+test('getDataTableName returns tableName or throws error', async t => {
+  const tableName = process.env.EASY_DATA_TABLE_NAME || 'simplified'
   let result
   let errors
   try {

@@ -1,14 +1,14 @@
 {
-  "name": "easy-tablestore",
-  "version": "0.1.0",
+  "name": "tablestore-simplified",
+  "version": "0.2.0",
   "description": "An easy, minimalist interface for Alibaba Cloud TableStore",
+  "keywords": ["database", "aliyun", "tablestore", "ots"],
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=testing tape test/**/*.test.js | tap-spec",
     "lint": "eslint src/ --fix"
   },
-  "keywords": [],
-  "author": "",
+  "author": "James Smith",
   "license": "ISC",
   "engines": { "node": ">=10" },
   "dependencies": {

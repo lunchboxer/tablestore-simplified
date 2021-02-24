@@ -23,6 +23,7 @@ module.exports = {
   ],
   rules: {
     'space-before-function-paren': 0,
+    'no-console': 'error',
     'comma-dangle': ['error', 'always-multiline'],
     'node/exports-style': ['error', 'module.exports'],
     'node/file-extension-in-import': ['error', 'always'],

@@ -1,14 +1,10 @@
 const { client } = require('../database/tablestore-client')
 
-async function listTables() {
+module.exports.listTables = async () => {
   try {
     const response = await client.listTable()
     return response.tableNames
-  } catch (error) {
-    console.error('error:', error)
+  } catch {
+    throw new Error('unable to get list of tables')
   }
-}
-
-module.exports = {
-  listTables,
 }
