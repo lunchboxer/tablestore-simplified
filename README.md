@@ -67,7 +67,7 @@ Whereas you may expect rows are given UIDs in an attribute labeled `id`, this li
 
 These functions return promises so `async/await` is recommended.
 
-TableStore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with TableStore.
+TableStore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. These and floating point numbers can be passed in safely. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with TableStore. Objects and arrays are supported by converting them to JSON by the user before passing them in as parameters.
 
 Batch operations are limited to 25 items
 

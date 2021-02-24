@@ -8,7 +8,8 @@ const Long = TableStore.Long
 //   {'age': 4}
 // ]
 // Also tablestore types map to Javascript types in the case of boolean and string
-// number requires conversion to an Int64 type
+// integers requires conversion to an Int64 type
+// floating point numbers can be safely passed on
 // Binary is allowed, but ignored here
 // objects and arrays are converted to JSON by the user
 
@@ -21,10 +22,9 @@ module.exports.formatAttributes = attributes => {
   const attributesArray = Object.keys(attributes).map(key => {
     validateKey(key)
     const row = {}
-    const value =
-      typeof attributes[key] === 'number'
-        ? Long.fromNumber(attributes[key])
-        : attributes[key]
+    const value = Number.isInteger(attributes[key])
+      ? Long.fromNumber(attributes[key])
+      : attributes[key]
     row[key] = value
     return row
   })
