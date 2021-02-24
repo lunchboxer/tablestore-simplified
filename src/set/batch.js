@@ -6,6 +6,7 @@ const { getOrMakeKey } = require('../utils/get-or-make-key')
 const MAX_BATCH_SIZE = 25
 
 module.exports.batch = async parameters => {
+  if (parameters.length === 0) return []
   if (parameters.length > MAX_BATCH_SIZE) {
     throw new Error(
       `Batch size ${parameters.length} exceeds maximum size (${MAX_BATCH_SIZE})`,
