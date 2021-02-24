@@ -1,6 +1,6 @@
 {
   "name": "tablestore-simplified",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "An easy, minimalist interface for Alibaba Cloud TableStore",
   "keywords": [
     "database",
