@@ -4,8 +4,8 @@ const data = require('../index')
 
 const { listTables } = require('../src/database/list-tables')
 
-let animal
-let animals
+let animal = {}
+let animals = []
 
 test('database client should initialize and return table names without error', async t => {
   const tables = await listTables()
@@ -18,7 +18,6 @@ test('get and destroy all items', async t => {
   const result = await data.destroy(allAnimals)
   t.ok(result === undefined, 'destroy returns undefined')
   const animalCount = await data.count({ table: 'animals' })
-  console.log(animalCount)
   t.ok(animalCount === 0, 'count of items in animals table is 0')
   t.end()
 })
@@ -89,6 +88,7 @@ test('calling with [], undefined, or {} handled', async t => {
   } catch (error) {
     t.error(error)
   }
+  t.end()
 })
 
 data.destroy([animal, ...animals])
