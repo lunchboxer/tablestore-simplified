@@ -9,7 +9,7 @@ const Long = TableStore.Long
 const test = require('tape')
 
 test('getDataTableName returns tableName or throws error', async t => {
-  const tableName = process.env.EASY_DATA_TABLE_NAME || 'simplified'
+  const tableName = process.env.SIMPLIFIED_TABLE_NAME || 'simplified'
   let result
   let errors
   try {

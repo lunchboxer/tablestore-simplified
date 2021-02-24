@@ -33,4 +33,91 @@ ACCESS_KEY_ID=
 OTS_ENDPOINT=https://instancename.region.something.aliyuncs.com
 OTS_INSTANCE_NAME=
 APP_NAME=whatever-you-like
+
+### OPTIONAL ###
+SIMPLIFIED_TABLE_NAME=simplified # default
+SIMPLIFIED_INDEX_NAME=simplified_index # defaulst to table_name + '_index'
+ENV=testing # data stored seperately for each environment
+
+```
+
+## Usage
+
+It's easy. Start by installing this package.
+
+```sh
+npm import --save tablestore-simplified
+```
+
+... and importing `data` in your api
+
+```javascript
+// api.js
+const { data } = require('tablestore-simplified')
+```
+
+### API
+
+Call functions on the `data` object, namely `get`, `set`, and `destroy`. In addition, there are convenience methods `count`, `incr`, and `decr`
+
+Whereas you may expect rows are given uids in an attribute label `id`, this library, like `@begin/data` which it imitates, uses the label `key`. These keys can be any string.
+
+These functions return promises so `async/await` is recommended.
+
+TableStore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with TableStore.
+
+#### set()
+
+Create a new row in the table or overwrite an existing one. If no key is given, a 12-character UID is generated. Create one row or pass in an array to create multiple rows. Returns the new row as an object, or an array of objects if multiple given.
+
+```javascript
+const newUser = await data.set({ table: 'users', name: 'John' })
+console.log(newUser) // { table: 'users', name: 'John', key: 'V5j3KZqxCx' }
+
+const newUsers = await data.set([
+  { table: 'users', name: 'Susanne' },
+  { table: 'users', name: 'Larry' },
+])
+```
+
+#### get()
+
+Retrieve a row or multiple rows by key, or an entire table by name. Returns a single object or an array of objects. When requesting a whole table the number of items returned is set by `limit`. A cursor is returned when table is larger than the limit.
+
+```javascript
+const oneUser = await data.get({ table: 'users', key: 'ajJ92HIho-2_' })
+console.log(oneUser) // { table:'users', key: 'ajJ92HIho-2_', name: 'Susanne' }
+
+const allUsers = await data.get({ table: 'users' })
+console.log(allUsers) // [{table: 'users', key: 'i9W-a5oqAV52', name: 'Larry'}, {...}, {...}]
+```
+
+#### destroy()
+
+Delete a row by key
+
+```javascript
+await data.destroy({ table: 'users', key: 'ajJ92HIho-2_' })
+```
+
+#### count()
+
+Get the number of items in a table.
+
+```javascript
+const numberOfAnimals = data.count({ table: 'animals' })
+console.log(numberOfAnimals) // 42
+```
+
+#### incr() and decr()
+
+Increment or decrement a single attribute on an item. If the prop given doesn't exist on the item, then it will be initialized with a value of 0 before adding or subtracting one.
+
+```javascript
+const newFreckleCount = await data.incr({
+  table: 'children',
+  key: 'Rebecca',
+  prop: 'freckles', // was 12
+})
+console.log(newFreckleCount) // { freckles: 13 }
 ```

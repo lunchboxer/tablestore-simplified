@@ -1,5 +1,3 @@
-const TableStore = require('tablestore')
-
 module.exports.formatResponseRow = row => {
   if (!row || typeof row !== 'object') {
     throw new TypeError('row must be an object')

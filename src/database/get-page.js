@@ -3,7 +3,7 @@ const { client } = require('./tablestore-client')
 
 module.exports.getPage = async (tableName, { limit, cursor, app, prefix }) => {
   limit = limit || 20
-  const indexName = process.env.EASY_DATA_INDEX_NAME || tableName + '_index'
+  const indexName = process.env.SIMPLIFIED_INDEX_NAME || tableName + '_index'
   const parameters = {
     tableName,
     indexName,

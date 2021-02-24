@@ -10,7 +10,6 @@ module.exports.counter = async ({ table, key, prop }, isIncr) => {
   const item = await get({ table, key })
   // 3. Get the prop, update the value
   if (!item) throw new Error('item not found')
-  console.log('original item to increment', item)
   const originalValue = {}.propertyIsEnumerable.call(item, prop)
     ? item[prop]
     : 0

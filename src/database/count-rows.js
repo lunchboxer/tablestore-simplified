@@ -2,7 +2,7 @@ const TableStore = require('tablestore')
 const { client } = require('./tablestore-client')
 
 module.exports.countRows = async (tableName, app, prefix) => {
-  const indexName = process.env.EASY_DATA_INDEX_NAME || tableName + '_index'
+  const indexName = process.env.SIMPLIFIED_INDEX_NAME || tableName + '_index'
   const parameters = {
     tableName,
     indexName,
