@@ -12,7 +12,7 @@ The project is very heavily inspired by [begin-data](https://github.com/smallwin
 - [x] write multiple rows
 - [x] read a single row from table
 - [x] fetch all rows from a "table"
-- [ ] pagination with 'cursor'/'token'
+- [ ] pagination with 'cursor'
 - [x] delete a row from table
 - [x] delete multiple rows
 - [x] increment a value for a single row
@@ -94,7 +94,7 @@ console.log(allUsers) // [{table: 'users', key: 'i9W-a5oqAV52', name: 'Larry'}, 
 
 #### destroy()
 
-Delete a row by key
+Delete a row by key. Returns an empty object, or undefined if called with an array.
 
 ```javascript
 await data.destroy({ table: 'users', key: 'ajJ92HIho-2_' })

@@ -15,7 +15,8 @@ module.exports.batch = async parameters => {
   // 2. Format the inputs
   const inputs = parameters.map(item => formatInput(item))
   // 3. remove rows from db
-  const keysOfDeletedRows = await batchWrite(tableName, inputs, 'DELETE')
+  await batchWrite(tableName, inputs, 'DELETE')
   // 4. Is this what @begin/data returns?
-  return keysOfDeletedRows
+  // it would seem more meaningful to return the keys
+  // return keysOfDeletedRows
 }
