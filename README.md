@@ -49,11 +49,11 @@ It's easy. Start by installing this package.
 npm import --save tablestore-simplified
 ```
 
-... and importing `data` in your api
+... and importing `data` (or whatever you feel like calling it) in your app
 
 ```javascript
-// api.js
-const { data } = require('tablestore-simplified')
+// app.js
+const data = require('tablestore-simplified')
 ```
 
 ### API
