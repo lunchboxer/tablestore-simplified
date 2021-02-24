@@ -6,26 +6,13 @@ This small library simplifies basic database interactions to a single function c
 
 The project is very heavily inspired by [begin-data](https://github.com/smallwins/begin-data). In fact, the API is intended to be identical, so that it could serve as a drop-in replacement
 
-## Features
-
-- [x] write single row to table
-- [x] write multiple rows
-- [x] read a single row from table
-- [x] fetch all rows from a "table"
-- [ ] pagination with 'cursor'
-- [x] delete a row from table
-- [x] delete multiple rows
-- [x] increment a value for a single row
-- [x] decrement a value
-- [x] fetch row count for a table
-
 Row-level ttl is not supported by TableStore, so no ttl features are available with this library.
 
 Passing a cursor in for pagination is not currently working.
 
 ## Setup
 
-First thing, you'll need an Alibaba Cloud account, a tablestore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type.
+First thing, you'll need an Alibaba Cloud account, a TableStore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type.
 
 After that the tablestore client expects several environment variables:
 

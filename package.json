@@ -2,12 +2,7 @@
   "name": "tablestore-simplified",
   "version": "0.3.1",
   "description": "An easy, minimalist interface for Alibaba Cloud TableStore",
-  "keywords": [
-    "database",
-    "aliyun",
-    "tablestore",
-    "ots"
-  ],
+  "keywords": ["database", "aliyun", "tablestore", "ots"],
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -17,7 +12,9 @@
     "url": "https://github.com/lunchboxer/tablestore-simplified/issues"
   },
   "scripts": {
-    "test": "NODE_ENV=testing tape test/**/*.test.js | tap-spec",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "NODE_ENV=testing tape test/unit.test.js | tap-spec",
+    "test:integration": "NODE_ENV=testing tape test/integration.test.js | tap-spec",
     "lint": "eslint src/ --fix"
   },
   "author": "James Smith",
