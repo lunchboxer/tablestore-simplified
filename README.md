@@ -1,20 +1,20 @@
-# TableStore Simplified
+# Tablestore Simplified
 
-When you look at the documentation for Alibaba Cloud's TableStore node sdk, you'll thank me for making it so you don't actually need to use it.
+When you look at the documentation for Alibaba Cloud's Tablestore node sdk, you'll thank me for making it so you don't actually need to use it.
 
 This small library simplifies basic database interactions to a single function call with an input object.
 
 The project is very heavily inspired by [begin-data](https://github.com/smallwins/begin-data). In fact, the API is intended to be identical, so that it could serve as a drop-in replacement
 
-Row-level ttl is not supported by TableStore, so no ttl features are available with this library.
+Row-level ttl is not supported by Tablestore, so no ttl features are available with this library.
 
 ## Setup
 
 This library uses async/await and other features which require node version >= 10.
 
-First thing, you'll need an Alibaba Cloud account, a TableStore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type. Then, create an index table for the two primary keys and call it `simplified_index`.
+First thing, you'll need an Alibaba Cloud account, a Tablestore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type. Then, create an index table for the two primary keys and call it `simplified_index`.
 
-After that the tablestore client expects several environment variables:
+After that the Tablestore client expects several environment variables:
 
 ```sh
 ACCESS_KEY_SECRET=
@@ -54,7 +54,7 @@ Whereas you may expect rows are given UIDs in an attribute labeled `id`, this li
 
 These functions return promises so `async/await` is recommended.
 
-TableStore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. These and floating point numbers can be passed in safely. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with TableStore. Objects and arrays are supported by converting them to JSON by the user before passing them in as parameters.
+Tablestore has String, Integer, Double, Boolean, and Binary types. String and Boolean map to javascript primitives. These and floating point numbers can be passed in safely. Binary is mapped a javascript Buffer type, but is currently ignored by this library. Integers are converted to 64-bit signed integers by this library to be compatible with Tablestore. Objects and arrays are supported by converting them to JSON by the user before passing them in as parameters.
 
 Batch operations are limited to 25 items
 
