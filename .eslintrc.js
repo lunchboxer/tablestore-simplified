@@ -22,7 +22,7 @@ module.exports = {
     },
   ],
   rules: {
-    'space-before-function-paren': 0,
+    // 'space-before-function-paren': 0,
     'no-console': 'error',
     'comma-dangle': ['error', 'always-multiline'],
     'node/exports-style': ['error', 'module.exports'],

@@ -3,12 +3,15 @@ const { client } = require('./tablestore-client')
 
 module.exports.getPage = async (tableName, { limit, cursor, app, prefix }) => {
   limit = limit || 20
+  const token = cursor ? Buffer.from(cursor, 'base64') : undefined
   const indexName = process.env.SIMPLIFIED_INDEX_NAME || tableName + '_index'
+
   const parameters = {
     tableName,
     indexName,
     searchQuery: {
       limit,
+      token,
       query: {
         queryType: TableStore.QueryType.BOOL_QUERY,
         query: {
@@ -35,15 +38,12 @@ module.exports.getPage = async (tableName, { limit, cursor, app, prefix }) => {
       returnType: TableStore.ColumnReturnType.RETURN_ALL,
     },
   }
-  // Doesn't work
-  if (cursor) {
-    parameters.token = Buffer.from(cursor, 'base64')
-  }
   const response = await client.search(parameters)
   const rows = [...response.rows]
+
+  // return a cursor if we didn't get all the items
   if (response.nextToken && response.nextToken.length > 0) {
-    const nextToken = response.nextToken.toString('base64')
-    rows.cursor = nextToken
+    rows.cursor = response.nextToken.toString('base64')
   }
   return rows
 }

@@ -8,9 +8,9 @@ The project is very heavily inspired by [begin-data](https://github.com/smallwin
 
 Row-level ttl is not supported by TableStore, so no ttl features are available with this library.
 
-Passing a cursor in for pagination is not currently working.
-
 ## Setup
+
+This library uses async/await and other features which require node version >= 10.
 
 First thing, you'll need an Alibaba Cloud account, a TableStore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type.
 
@@ -74,7 +74,7 @@ const newUsers = await data.set([
 
 #### get()
 
-Retrieve a row or multiple rows by key, or an entire table by name. Returns a single object or an array of objects. When requesting a whole table the number of items returned is set by `limit`. A cursor is returned when table is larger than the limit.
+Retrieve a row or multiple rows by key, or an entire table by name. Returns a single object or an array of objects. When requesting a whole table the number of items returned is set by `limit` which defaults to 20. A cursor is returned when table is larger than the limit. Pass that cursor back in to get the next page of results.
 
 ```javascript
 const oneUser = await data.get({ table: 'users', key: 'ajJ92HIho-2_' })
@@ -82,6 +82,10 @@ console.log(oneUser) // { table:'users', key: 'ajJ92HIho-2_', name: 'Susanne' }
 
 const allUsers = await data.get({ table: 'users' })
 console.log(allUsers) // [{table: 'users', key: 'i9W-a5oqAV52', name: 'Larry'}, {...}, {...}]
+
+const manyFoods = await data.get({ table: 'foods' })
+const { cursor } = manyFoods
+const moreFoods = await data.get({ table: 'foods', cursor })
 ```
 
 #### destroy()
@@ -112,4 +116,15 @@ const newFreckleCount = await data.incr({
   prop: 'freckles', // was 12
 })
 console.log(newFreckleCount) // { freckles: 13 }
+```
+
+#### page()
+
+For convenience this function wraps get() in an async iterator to allow easily paging through results of a whole table.
+
+```javascript
+const pages = data.page({ table: 'animals' })
+for await (let page of pages) {
+  console.log(page)
+}
 ```
