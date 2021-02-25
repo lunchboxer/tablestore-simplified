@@ -12,7 +12,7 @@ Row-level ttl is not supported by TableStore, so no ttl features are available w
 
 This library uses async/await and other features which require node version >= 10.
 
-First thing, you'll need an Alibaba Cloud account, a TableStore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type.
+First thing, you'll need an Alibaba Cloud account, a TableStore instance, and a table called `simplified` set up with two primary keys. The first (partition key) is called `app` and the second is called `sortId` both of these are string type. Then, create an index table for the two primary keys and call it `simplified_index`.
 
 After that the tablestore client expects several environment variables:
 
@@ -26,7 +26,7 @@ APP_NAME=whatever-you-like
 
 ### OPTIONAL ###
 SIMPLIFIED_TABLE_NAME=simplified # default
-SIMPLIFIED_INDEX_NAME=simplified_index # defaulst to table_name + '_index'
+SIMPLIFIED_INDEX_NAME=simplified_index # defaults to table_name + '_index'
 ENV=testing # data stored seperately for each environment
 
 ```
